@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bqjyb6dhjs0sv"]
+[gd_scene load_steps=8 format=3 uid="uid://bqjyb6dhjs0sv"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_b663x"]
 [ext_resource type="Texture2D" uid="uid://bwx5l2eukcpup" path="res://Water.png" id="1_evmo7"]
@@ -506,25 +506,22 @@ texture = ExtResource("2_ko6ji")
 8:6/0 = 0
 8:6/0/terrain_set = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cp31w"]
+texture = ExtResource("1_evmo7")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_t8635"]
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Grass"
 terrain_set_0/terrain_0/color = Color(0.192157, 0.439216, 0.32549, 1)
 sources/0 = SubResource("TileSetAtlasSource_ldhih")
+sources/1 = SubResource("TileSetAtlasSource_cp31w")
 
 [node name="Node" type="Node"]
 script = ExtResource("1_b663x")
-
-[node name="Background" type="TextureRect" parent="."]
-texture_filter = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("1_evmo7")
-stretch_mode = 1
-metadata/_edit_use_anchors_ = true
 
 [node name="Map" type="TileMap" parent="."]
 texture_filter = 1
@@ -536,3 +533,11 @@ position = Vector2(372, 280)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(26, -40)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="DebugText" type="RichTextLabel" parent="CanvasLayer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 98.0
+grow_horizontal = 2
