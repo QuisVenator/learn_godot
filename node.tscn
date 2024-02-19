@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bqjyb6dhjs0sv"]
+[gd_scene load_steps=7 format=3 uid="uid://bqjyb6dhjs0sv"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_b663x"]
 [ext_resource type="Texture2D" uid="uid://bwx5l2eukcpup" path="res://Water.png" id="1_evmo7"]
 [ext_resource type="Texture2D" uid="uid://d4bynsjej6tul" path="res://Grass.png" id="2_ko6ji"]
+[ext_resource type="PackedScene" uid="uid://b66qdut774fd1" path="res://MainPlayer.tscn" id="4_t3v6o"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ldhih"]
 resource_name = "tileSetGrass"
@@ -529,3 +530,9 @@ metadata/_edit_use_anchors_ = true
 texture_filter = 1
 tile_set = SubResource("TileSet_t8635")
 format = 2
+
+[node name="Player" parent="." instance=ExtResource("4_t3v6o")]
+position = Vector2(372, 280)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(26, -40)
