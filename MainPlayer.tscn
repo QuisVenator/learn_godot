@@ -1,54 +1,16 @@
 [gd_scene load_steps=4 format=3 uid="uid://b66qdut774fd1"]
 
 [ext_resource type="Texture2D" uid="uid://8hlnmhvvx18x" path="res://Jump (32x32).png" id="1_ebf4f"]
-
-[sub_resource type="GDScript" id="GDScript_prn62"]
-script/source = "extends CharacterBody2D
-
-
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
-
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting(\"physics/2d/default_gravity\")
-
-
-func _physics_process(delta):
-	# Add the gravity.
-	if not is_on_floor():
-		velocity.y += gravity * delta
-
-	# Get the horizontal input direction.
-	var direction_x = Input.get_axis(\"ui_left\", \"ui_right\")
-	
-	# Get the vertical input direction.
-	var direction_y = Input.get_axis(\"ui_up\", \"ui_down\")
-	
-	# Apply horizontal movement or deceleration.
-	if direction_x != 0:
-		velocity.x = direction_x * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		
-	if direction_y != 0:
-		velocity.y = direction_y * SPEED
-	else:
-		velocity.y = move_toward(velocity.y, 0, SPEED)
-
-	# Normalize the velocity vector if moving diagonally to ensure the speed does not exceed the defined SPEED.
-	if direction_x != 0 and direction_y != 0:
-		velocity = velocity.normalized() * SPEED
-
-	move_and_slide()
-"
+[ext_resource type="Script" path="res://MainPlayer.gd" id="1_pbvb3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gky44"]
 size = Vector2(15, 5)
 
 [node name="Player" type="CharacterBody2D"]
-script = SubResource("GDScript_prn62")
+script = ExtResource("1_pbvb3")
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
+texture_filter = 1
 position = Vector2(24, 21)
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("1_ebf4f")
