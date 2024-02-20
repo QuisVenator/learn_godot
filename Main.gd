@@ -7,6 +7,7 @@ var map: TileMap
 var noise: FastNoiseLite
 var activeChunks: Dictionary = {}
 var renderDistance := 3
+var chunkRenderQueue: Array = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,6 +16,7 @@ func _ready():
 
 	noise = FastNoiseLite.new()
 	map = get_node("Map")
+	map.add_layer(-1)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -37,7 +39,10 @@ func _process(delta):
 						delete_chunk(chunk)
 						activeChunks.erase(chunk)
 				
-				render_chunk(visible_chunk)
+				chunkRenderQueue.append(visible_chunk)
+	
+	if chunkRenderQueue.size() > 0:
+		render_chunk(chunkRenderQueue.pop_front())
 
 func render_chunk(chunk: Vector2i):
 	var grass_tiles = []
@@ -47,7 +52,8 @@ func render_chunk(chunk: Vector2i):
 			if noise.get_noise_2d(map_pos.x, map_pos.y) > 0:
 				grass_tiles.append(map_pos)
 			else:
-				map.set_cell(0,  map_pos, 1, Vector2i(0, 0), 0)
+				map.set_cell(0,  map_pos, -1)
+			map.set_cell(0,  map_pos, 1, Vector2i(0, 0))
 	
 	map.set_cells_terrain_connect(0, grass_tiles, 0, 0)
 

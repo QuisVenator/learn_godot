@@ -400,6 +400,7 @@ texture = ExtResource("2_ko6ji")
 8:6/0/terrain_set = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cp31w"]
+resource_name = "tileSetWater"
 texture = ExtResource("1_evmo7")
 0:0/0 = 0
 1:0/0 = 0
