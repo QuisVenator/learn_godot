@@ -43,15 +43,16 @@ func _physics_process(delta):
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gky44"]
-size = Vector2(23, 28)
+size = Vector2(15, 5)
 
 [node name="Player" type="CharacterBody2D"]
 script = SubResource("GDScript_prn62")
 
 [node name="PlayerSprite" type="Sprite2D" parent="."]
 position = Vector2(24, 21)
+scale = Vector2(0.7, 0.7)
 texture = ExtResource("1_ebf4f")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(23.5, 23)
+position = Vector2(24.5, 30.5)
 shape = SubResource("RectangleShape2D_gky44")

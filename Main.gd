@@ -52,10 +52,10 @@ func render_chunk(chunk: Vector2i):
 			if noise.get_noise_2d(map_pos.x, map_pos.y) > 0:
 				grass_tiles.append(map_pos)
 			else:
-				map.set_cell(0,  map_pos, -1)
-			map.set_cell(0,  map_pos, 1, Vector2i(0, 0))
+				map.set_cell(1,  map_pos, 1, Vector2i(0, 0))
+			map.set_cell(0,  map_pos, 1, Vector2i(1, 0))
 	
-	map.set_cells_terrain_connect(0, grass_tiles, 0, 0)
+	map.set_cells_terrain_connect(1, grass_tiles, 0, 0)
 
 func delete_chunk(chunk: Vector2i):
 	for x in range(chunk_size.x):
