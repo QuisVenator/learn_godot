@@ -6,7 +6,10 @@ const JUMP_VELOCITY = -400.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var projectile : PackedScene
 
+func _ready():
+	projectile = load("res://simple_projectile.tscn")
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -35,3 +38,15 @@ func _physics_process(delta):
 		velocity = velocity.normalized() * SPEED
 
 	move_and_slide()
+
+	# Check for mouseclick
+	if Input.is_action_just_pressed("click"):
+		shoot()
+
+
+func shoot():
+	var p := projectile.instantiate()
+	owner.add_child(p)
+	p.direction = self.position.direction_to(get_global_mouse_position())
+	p.position = self.position
+
