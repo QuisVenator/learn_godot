@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://brg2tyjxh5w60" path="res://Slime.png" id="1_76vk0"]
 [ext_resource type="Script" path="res://characters/npcs/mobs/enemies/enemy_slime.gd" id="1_tqgfg"]
 
-[node name="EnemySlime" type="Area2D"]
+[node name="EnemySlime" type="CharacterBody2D"]
 script = ExtResource("1_tqgfg")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
