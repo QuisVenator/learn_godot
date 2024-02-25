@@ -1,8 +1,9 @@
-extends Area2D
+extends Projectile
 
-const speed : int = 50
+const speed : int = 80
 var direction : Vector2
 var ttl := 5.0
+var damage = 15
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,8 +16,8 @@ func _physics_process(delta):
 	if ttl <= 0:
 		queue_free()
 		return
-	position += direction * speed * delta + direction * 0.5 * ttl**2
+	position += direction * speed * delta + direction * 0.2 * ttl**2
 
 func _on_body_entered(body):
 	if body is Enemy:
-		print(body)
+		body.hit(self)
