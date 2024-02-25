@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2c048uflm6kd"]
+
+[ext_resource type="Texture2D" uid="uid://brg2tyjxh5w60" path="res://Slime.png" id="1_76vk0"]
+[ext_resource type="Script" path="res://characters/npcs/mobs/enemies/enemy_slime.gd" id="1_tqgfg"]
+
+[node name="EnemySlime" type="Area2D"]
+script = ExtResource("1_tqgfg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_76vk0")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-1, -6, -9, 0, -10, 7, 11, 7, 10, 0, 3, -7)
