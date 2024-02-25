@@ -16,3 +16,7 @@ func _physics_process(delta):
 		queue_free()
 		return
 	position += direction * speed * delta + direction * 0.5 * ttl**2
+
+func _on_body_entered(body):
+	if body is Enemy:
+		print(body)

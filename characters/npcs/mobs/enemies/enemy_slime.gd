@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends Enemy
 class_name EnemySlime
 
 var player : CharacterBody2D

@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var Projectile : PackedScene
+@export var starting_projectile : PackedScene
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
@@ -45,7 +45,7 @@ func _physics_process(delta):
 
 
 func shoot():
-	var p = Projectile.instantiate()
+	var p = starting_projectile.instantiate()
 	owner.add_child(p)
 	p.direction = self.position.direction_to(get_global_mouse_position())
 	p.position = self.position

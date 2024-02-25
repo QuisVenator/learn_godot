@@ -1,6 +1,6 @@
 extends Timer
 
-@export var Enemies : Array[Enemy]
+@export var Enemies : Array[Spawnable]
 
 enum {TOP, DOWN, LEFT, RIGHT}
 

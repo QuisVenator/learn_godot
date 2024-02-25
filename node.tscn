@@ -5,8 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://d4bynsjej6tul" path="res://Grass.png" id="2_ko6ji"]
 [ext_resource type="PackedScene" uid="uid://b66qdut774fd1" path="res://characters/players/MainPlayer.tscn" id="4_t3v6o"]
 [ext_resource type="Script" path="res://SpawnController.gd" id="5_djifq"]
-[ext_resource type="PackedScene" uid="uid://b2c048uflm6kd" path="res://characters/npcs/mobs/enemies/enemy_slime.tscn" id="6_xqveq"]
-[ext_resource type="Script" path="res://characters/npcs/mobs/enemies/enemy.gd" id="7_jfot8"]
+[ext_resource type="PackedScene" uid="uid://b2c048uflm6kd" path="res://characters/npcs/mobs/enemies/enemy_slime.tscn" id="6_r6ndt"]
+[ext_resource type="Script" path="res://characters/npcs/mobs/enemies/spawnable.gd" id="7_dy1f1"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_piuq6"]
 
@@ -572,10 +572,10 @@ terrain_set_0/terrain_0/color = Color(0.109804, 0.454902, 0.27451, 1)
 sources/0 = SubResource("TileSetAtlasSource_ldhih")
 sources/1 = SubResource("TileSetAtlasSource_cp31w")
 
-[sub_resource type="Resource" id="Resource_6c4nq"]
-script = ExtResource("7_jfot8")
-spawn_interval = 5
-scene = ExtResource("6_xqveq")
+[sub_resource type="Resource" id="Resource_c6vvd"]
+script = ExtResource("7_dy1f1")
+spawn_interval = 2
+scene = ExtResource("6_r6ndt")
 
 [node name="Node" type="Node"]
 script = ExtResource("1_b663x")
@@ -604,6 +604,6 @@ grow_horizontal = 2
 process_callback = 0
 autostart = true
 script = ExtResource("5_djifq")
-Enemies = Array[ExtResource("7_jfot8")]([SubResource("Resource_6c4nq")])
+Enemies = Array[ExtResource("7_dy1f1")]([SubResource("Resource_c6vvd")])
 
 [connection signal="timeout" from="SpawnController" to="SpawnController" method="_on_timeout"]
