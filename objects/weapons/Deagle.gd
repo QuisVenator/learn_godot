@@ -1,4 +1,4 @@
-extends Sprite2D
+extends Node2D
 
 var projectile = preload("res://objects/projectiles/simple_projectile.tscn");
 var cooldown = 0.5;
@@ -21,10 +21,13 @@ func shoot():
 	can_shoot = false
 	get_tree().create_timer(cooldown).connect("timeout",Callable(self,"_on_cooldown_timeout"))
 
+	# Start cooldown animation
+	get_node("AnimationPlayer").play("cooldown")
+
 	var p = projectile.instantiate()
 	get_parent().get_owner().add_child(p)
+	p.position = get_node("Muzzle").global_position
 	p.direction = get_parent().position.direction_to(get_global_mouse_position())
-	p.position = get_parent().position
 
 
 func _on_cooldown_timeout():
