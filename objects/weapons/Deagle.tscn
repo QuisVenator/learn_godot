@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0wy1035fq1ih"]
+
+[ext_resource type="Texture2D" uid="uid://cr8m1fkoq1w8h" path="res://asperite/weapons/Deagle.png" id="1_6luom"]
+[ext_resource type="Script" path="res://objects/weapons/Deagle.gd" id="1_r8w6s"]
+
+[node name="Deagle" type="Sprite2D"]
+texture = ExtResource("1_6luom")
+script = ExtResource("1_r8w6s")

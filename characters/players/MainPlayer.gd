@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var starting_projectile : PackedScene
+var weapon : PackedScene = preload("res://objects/weapons/Deagle.tscn")
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
@@ -9,7 +9,9 @@ const JUMP_VELOCITY = -400.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready():
-	pass
+	# Give starting weapon
+	var weapon_instance = weapon.instantiate()
+	add_child(weapon_instance)
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -38,15 +40,3 @@ func _physics_process(delta):
 		velocity = velocity.normalized() * SPEED
 
 	move_and_slide()
-
-	# Check for mouseclick
-	if Input.is_action_just_pressed("click"):
-		shoot()
-
-
-func shoot():
-	var p = starting_projectile.instantiate()
-	owner.add_child(p)
-	p.direction = self.position.direction_to(get_global_mouse_position())
-	p.position = self.position
-
