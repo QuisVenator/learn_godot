@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 var weapon : PackedScene = preload("res://objects/weapons/Deagle.tscn")
 
-const SPEED = 300.0
+const SPEED = 18000
 const JUMP_VELOCITY = -400.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -14,9 +14,7 @@ func _ready():
 	add_child(weapon_instance)
 
 func _physics_process(delta):
-	# Add the gravity.
-	if not is_on_floor():
-		velocity.y += gravity * delta
+	var speed = SPEED * delta
 
 	# Get the horizontal input direction.
 	var direction_x = Input.get_axis("ui_left", "ui_right")
@@ -26,17 +24,17 @@ func _physics_process(delta):
 	
 	# Apply horizontal movement or deceleration.
 	if direction_x != 0:
-		velocity.x = direction_x * SPEED
+		velocity.x = direction_x * speed
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, speed)
 		
 	if direction_y != 0:
-		velocity.y = direction_y * SPEED
+		velocity.y = direction_y * speed
 	else:
-		velocity.y = move_toward(velocity.y, 0, SPEED)
+		velocity.y = move_toward(velocity.y, 0, speed)
 
 	# Normalize the velocity vector if moving diagonally to ensure the speed does not exceed the defined SPEED.
 	if direction_x != 0 and direction_y != 0:
-		velocity = velocity.normalized() * SPEED
+		velocity = velocity.normalized() * speed
 
 	move_and_slide()

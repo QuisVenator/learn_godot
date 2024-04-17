@@ -13,5 +13,5 @@ func _process(delta):
 	pass
 
 func _physics_process(delta):
-	velocity = self.position.direction_to(player.position).normalized() * 100
+	velocity = self.position.direction_to(player.position).normalized() * 6000 * delta
 	move_and_slide()
