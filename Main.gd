@@ -3,7 +3,8 @@ extends Node
 var chunk_size := Vector2i(16, 16)
 var player: CharacterBody2D
 var debugText: RichTextLabel
-var map: TileMap
+var map: TileMapLayer
+var background: TileMapLayer
 var noise: FastNoiseLite
 var activeChunks: Dictionary = {}
 var renderDistance := 3
@@ -13,10 +14,10 @@ var chunkRenderQueue: Array = []
 func _ready():
 	debugText = get_node("CanvasLayer/DebugText")
 	player = get_node("Player")
+	map = $map_holder/Layer0
+	background = $map_holder/Layer1
 
 	noise = FastNoiseLite.new()
-	map = get_node("Map")
-	map.add_layer(-1)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -52,13 +53,12 @@ func render_chunk(chunk: Vector2i):
 			if noise.get_noise_2d(map_pos.x, map_pos.y) > 0:
 				grass_tiles.append(map_pos)
 			else:
-				map.set_cell(1,  map_pos, 1, Vector2i(0, 0))
-			map.set_cell(0,  map_pos, 1, Vector2i(1, 0))
+				map.set_cell(map_pos, 1, Vector2i(0, 0))
 	
-	map.set_cells_terrain_connect(1, grass_tiles, 0, 0)
+	map.set_cells_terrain_connect(grass_tiles, 0, 0)
 
 func delete_chunk(chunk: Vector2i):
 	for x in range(chunk_size.x):
 		for y in range(chunk_size.y):
 			var map_pos := Vector2i(chunk.x * chunk_size.x + x, chunk.y * chunk_size.y + y)
-			map.set_cell(0,  map_pos, -1)
+			background.set_cell(map_pos, -1)
